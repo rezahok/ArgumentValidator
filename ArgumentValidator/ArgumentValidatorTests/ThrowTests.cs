@@ -39,6 +39,19 @@
         }
 
         /// <summary>
+        /// IfNullOrEmpty does not throw any exception when argument is white space.
+        /// </summary>
+        [TestMethod]
+        public void IfNullOrEmpty_WhiteSpace_NoExceptionThrown()
+        {
+            // Arrange
+            string argument = "  ";
+
+            // Act
+            Throw.IfNullOrEmpty(argument, nameof(argument));
+        }
+
+        /// <summary>
         /// IfNullOrEmpty does not throw any exception when argument is not null and not empty.
         /// </summary>
         [TestMethod]

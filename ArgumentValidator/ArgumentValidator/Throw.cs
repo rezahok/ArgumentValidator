@@ -17,7 +17,7 @@
         {
             IfNull(argumentValue, argumentName);
 
-            if (argumentValue.Trim().Length == 0)
+            if (argumentValue.Length == 0)
             {
                 throw new ArgumentException("Should not be empty", argumentName);
             }
