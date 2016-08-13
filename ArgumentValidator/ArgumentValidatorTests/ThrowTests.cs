@@ -215,5 +215,32 @@
             // Act
             Throw.IfNot(() => argumentValue > 1 && argumentValue < 5);
         }
+
+        /// <summary>
+        /// IfNull throws <exception cref="ArgumentNullException"/> when the nullable argument is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfNull_NullableTypeUndefinedValue_ThrowsArgumentException()
+        {
+            // Arrange
+            int? argument = null;
+
+            // Act
+            Throw.IfNull(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfNull does not throw any exception when nullable argument is valid value.
+        /// </summary>
+        [TestMethod]
+        public void IfNull_NullableTypeValidValue_NoExceptionThrown()
+        {
+            // Arrange
+            int? argument = 31412;
+
+            // Act
+            Throw.IfNull(argument, nameof(argument));
+        }
     }
 }
