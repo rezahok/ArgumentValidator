@@ -190,7 +190,7 @@
         }
 
         /// <summary>
-        /// IfConstraint throws <exception cref="InvalidConstraintException"/> when expression returns true.
+        /// IfConstraint throws <exception cref="InvalidConstraintException"/> when constraint is true.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
@@ -204,7 +204,7 @@
         }
 
         /// <summary>
-        /// IfConstraint does not throw any exception when expression returns false.
+        /// IfConstraint does not throw any exception when constraint is false.
         /// </summary>
         [TestMethod]
         public void IfConstraint_ExpressionFalse_NoExceptionThrown()
@@ -249,7 +249,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
-        public void IfNotInRange_NotInRangeGreaterThanEndRange_ThrowsInvalidConstraintException()
+        public void IfNotInRange_GreaterThanEndRangeValue_ThrowsInvalidConstraintException()
         {
             // Arrange
             var argument = 500;
@@ -266,7 +266,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
-        public void IfNotInRange_NotInRangeLessThanStartRange_ThrowsInvalidConstraintException()
+        public void IfNotInRange_LessThanStartRangeValue_ThrowsInvalidConstraintException()
         {
             // Arrange
             var argument = 0;
@@ -277,6 +277,9 @@
             Throw.IfNotInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfNotInRange throws no exception when argument is in range.
+        /// </summary>
         [TestMethod]
         public void IfNotInRange_StartRangeValue_NoExceptionThrown()
         {
@@ -289,6 +292,9 @@
             Throw.IfNotInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfNotInRange throws no exception when argument is in range.
+        /// </summary>
         [TestMethod]
         public void IfNotInRange_EndRangeValue_NoExceptionThrown()
         {
@@ -316,8 +322,11 @@
             Throw.IfNotInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfInRange throws no exception when argument is not in range.
+        /// </summary>
         [TestMethod]
-        public void IfInRange_NotInRangeGreaterThanEndRange_NoExceptionThrown()
+        public void IfInRange_GreaterThanEndRangeValue_NoExceptionThrown()
         {
             // Arrange
             var argument = 500;
@@ -328,8 +337,11 @@
             Throw.IfInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfInRange throws no exception when argument is not in range.
+        /// </summary>
         [TestMethod]
-        public void IfInRange_NotInRangeLessThanStartRange_NoExceptionThrown()
+        public void IfInRange_LessThanStartRangeValue_NoExceptionThrown()
         {
             // Arrange
             var argument = 0;
@@ -340,6 +352,10 @@
             Throw.IfInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfInRange throws <exception cref="InvalidConstraintException"/> when the argument 
+        /// is equal to start range value.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
         public void IfInRange_StartRangeValue_ThrowsInvalidConstraintException()
@@ -370,6 +386,10 @@
             Throw.IfInRange(argument, startRange, endRange);
         }
 
+        /// <summary>
+        /// IfInRange throws <exception cref="InvalidConstraintException"/> when the argument 
+        /// is inside the range.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
         public void IfInRange_InRange_NoExceptionThrowsInvalidConstraintException()
