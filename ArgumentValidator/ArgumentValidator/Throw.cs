@@ -42,6 +42,20 @@
         }
 
         /// <summary>
+        /// Throws <exception cref="ArgumentException"/> if nullable argument does not have a valid value.
+        /// </summary>
+        /// <typeparam name="T">Type of the argument</typeparam>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfNull<T>(T? argumentValue, string argumentName) where T: struct 
+        {
+            if (!argumentValue.HasValue)
+            {
+                throw new ArgumentException("Should have a valid value for type", argumentName);
+            }
+        }
+
+        /// <summary>
         /// Throws <exception cref="ArgumentNullException"/> if argument is null, and throws 
         /// <exception cref="ArgumentException"/> when argument is empty.
         /// </summary>
