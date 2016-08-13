@@ -1,6 +1,7 @@
 ﻿namespace ArgumentValidator.Tests
 {
     using System;
+    using System.Data;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -186,6 +187,33 @@
 
             // Act
             Throw.IfEmpty(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfNot throws <exception cref="InvalidConstraintException"/> when expression returns false.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidConstraintException))]
+        public void IfNot_ExpressionFalse_ThrowInvalidConstraintException()
+        {
+            // Arrange
+            var argumentValue = 5;
+
+            // Act
+            Throw.IfNot(() => argumentValue > 100);
+        }
+
+        /// <summary>
+        /// IfNot does not throw any exception when expression returns true.
+        /// </summary>
+        [TestMethod]
+        public void IfNot_ExpressionTrue_NoExceptionThrown()
+        {
+            // Arrange
+            var argumentValue = 3;
+
+            // Act
+            Throw.IfNot(() => argumentValue > 1 && argumentValue < 5);
         }
     }
 }

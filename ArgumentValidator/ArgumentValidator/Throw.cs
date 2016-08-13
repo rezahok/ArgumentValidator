@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace ArgumentValidator
+﻿namespace ArgumentValidator
 {
     using System;
+    using System.Data;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -83,6 +83,15 @@ namespace ArgumentValidator
             if (argumentValue == Guid.Empty)
             {
                 throw new ArgumentException("Should not be an empty Guid", argumentName);
+            }
+        }
+
+        public static void IfNot(Func<bool> lambda)
+        {
+            var ret = lambda.Invoke();
+            if (ret == false)
+            {
+                throw new InvalidConstraintException();
             }
         }
     }
