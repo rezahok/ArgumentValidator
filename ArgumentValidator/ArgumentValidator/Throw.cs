@@ -86,6 +86,10 @@
             }
         }
 
+        /// <summary>
+        /// Throws <exception cref="InvalidConstraintException"/> if lambda expression is false.
+        /// </summary>
+        /// <param name="lambda">The lambda expression.</param>
         public static void IfNot(Func<bool> lambda)
         {
             var ret = lambda.Invoke();
