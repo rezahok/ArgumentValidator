@@ -101,16 +101,40 @@
         }
 
         /// <summary>
-        /// Throws <exception cref="InvalidConstraintException"/> if lambda expression is false.
+        /// Throws <exception cref="InvalidConstraintException"/> if constraint is true.
         /// </summary>
         /// <param name="lambda">The lambda expression.</param>
-        public static void IfNot(Func<bool> lambda)
+        public static void IfConstraint(Func<bool> lambda)
         {
             var ret = lambda.Invoke();
-            if (ret == false)
+            if (ret)
             {
                 throw new InvalidConstraintException();
             }
+        }
+
+        /// <summary>
+        /// Throws <exception cref="InvalidConstraintException"/> when argument not in range. The range check is
+        /// as follows: argumentValue less than startRange  and greater than startRange. 
+        /// </summary>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="startRange">The start range valule.</param>
+        /// <param name="endRange">The end range value.</param>
+        public static void IfNotInRange(int argumentValue, int startRange, int endRange)
+        {
+            IfConstraint(() => argumentValue < startRange || argumentValue > endRange);
+        }
+
+        /// <summary>
+        /// Throws <exception cref="InvalidConstraintException"/> when argument is in range. The range check is 
+        /// as follows: argumentValue greater or equal to startRange and less than or equal to endRange.
+        /// </summary>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="startRange">The start range valule.</param>
+        /// <param name="endRange">The end range value.</param>
+        public static void IfInRange(int argumentValue, int startRange, int endRange)
+        {
+            IfConstraint(() => argumentValue >= startRange && argumentValue <= endRange);
         }
     }
 }
