@@ -114,7 +114,7 @@
         }
 
         /// <summary>
-        /// Throws <exception cref="InvalidConstraintException"/> when argument not in range. The range check is
+        /// Throws <exception cref="ArgumentOutOfRangeException"/> when argument not in range. The range check is
         /// as follows: argumentValue less than startRange  and greater than startRange. 
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
@@ -133,7 +133,7 @@
         }
 
         /// <summary>
-        /// Throws <exception cref="InvalidConstraintException"/> when argument is in range. The range check is 
+        /// Throws <exception cref="ArgumentOutOfRangeException"/> when argument is in range. The range check is 
         /// as follows: argumentValue greater or equal to startRange and less than or equal to endRange.
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
