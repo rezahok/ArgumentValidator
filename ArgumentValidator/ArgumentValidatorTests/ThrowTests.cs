@@ -149,16 +149,43 @@
         }
 
         /// <summary>
-        /// IfNullOrHasNull does not throw any exception when collection does not have a null value
+        /// IfNullOrHasNull does not throw any exception when collection does not have a null value.
         /// </summary>
         [TestMethod]
         public void IfNullOrHasNull_CollectionHasNoNull_NoExceptionThrown()
         {
             // Arrange
-            var argument = new List<string>() { "oneitem", "seconditem" };
+            var argument = new List<string> { "oneitem", "seconditem" };
 
             // Act
             Throw.IfNullOrHasNull(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfEmpty throws <exception cref="ArgumentException"/> when the argument is an empty Guid.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfEmpty_EmptyGuid_ThrowsArgumentException()
+        {
+            // Arrange
+            var argument = Guid.Empty;
+
+            // Act
+            Throw.IfEmpty(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfEmpty does not throw any exception when argument is a non empty guid.
+        /// </summary>
+        [TestMethod]
+        public void IfEmpty_NonEmptyGuid_NoExceptionThrown()
+        {
+            // Arrange
+            var argument = Guid.NewGuid();
+
+            // Act
+            Throw.IfEmpty(argument, nameof(argument));
         }
     }
 }

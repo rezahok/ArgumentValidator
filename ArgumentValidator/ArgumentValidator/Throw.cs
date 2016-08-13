@@ -1,4 +1,6 @@
-﻿namespace ArgumentValidator
+﻿using System.Collections.Generic;
+
+namespace ArgumentValidator
 {
     using System;
     using System.Collections;
@@ -61,13 +63,26 @@
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="argumentName">The argument name.</param>
-        public static void IfNullOrHasNull(ICollection argumentValue, string argumentName)
+        public static void IfNullOrHasNull<T>(ICollection<T> argumentValue, string argumentName)
         {
             IfNull(argumentValue, argumentName);
 
-            if (argumentValue.Cast<object>().Any(item => item == null))
+            if (argumentValue.Any(item => item == null))
             {
                 throw new ArgumentException("Should not contain a null item in the collection", argumentName);
+            }
+        }
+
+        /// <summary>
+        /// Throws <exception cref="ArgumentException"/> if argument is empty Guid.
+        /// </summary>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfEmpty(Guid argumentValue, string argumentName)
+        {
+            if (argumentValue == Guid.Empty)
+            {
+                throw new ArgumentException("Should not be an empty Guid", argumentName);
             }
         }
     }
