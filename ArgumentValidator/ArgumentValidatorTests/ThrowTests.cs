@@ -190,30 +190,30 @@
         }
 
         /// <summary>
-        /// IfConstraint throws <exception cref="InvalidConstraintException"/> when constraint is true.
+        /// IfNot throws <exception cref="InvalidConstraintException"/> when constraint is false.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidConstraintException))]
-        public void IfConstraint_ExpressionTrue_ThrowInvalidConstraintException()
+        public void IfNot_ExpressionTrue_ThrowInvalidConstraintException()
         {
             // Arrange
-            var argumentValue = 50;
+            var argumentValue = 10;
 
             // Act
-            Throw.IfConstraint(() => argumentValue > 1 && argumentValue < 100);
+            Throw.IfNot(() => argumentValue > 100);
         }
 
         /// <summary>
-        /// IfConstraint does not throw any exception when constraint is false.
+        /// IfNot does not throw any exception when constraint is true.
         /// </summary>
         [TestMethod]
-        public void IfConstraint_ExpressionFalse_NoExceptionThrown()
+        public void IfNot_ExpressionFalse_NoExceptionThrown()
         {
             // Arrange
-            var argumentValue = 6;
+            var argumentValue = 43;
 
             // Act
-            Throw.IfConstraint(() => argumentValue > 7);
+            Throw.IfNot(() => argumentValue > 42);
         }
 
         /// <summary>

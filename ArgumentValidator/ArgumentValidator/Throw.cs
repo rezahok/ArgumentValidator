@@ -101,13 +101,13 @@
         }
 
         /// <summary>
-        /// Throws <exception cref="InvalidConstraintException"/> if constraint is true.
+        /// Throws <exception cref="InvalidConstraintException"/> if constraint is false.
         /// </summary>
         /// <param name="lambda">The lambda expression.</param>
-        public static void IfConstraint(Func<bool> lambda)
+        public static void IfNot(Func<bool> lambda)
         {
             var ret = lambda.Invoke();
-            if (ret)
+            if (!ret)
             {
                 throw new InvalidConstraintException();
             }
