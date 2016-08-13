@@ -1,6 +1,8 @@
 ﻿namespace ArgumentValidator.Tests
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -89,6 +91,59 @@
 
             // Act
             Throw.IfNull(argument, nameof(argument));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IfNullOrEmpty_NullCollection_ThrowsArgumentNullException()
+        {
+            // Arrange
+            ICollection argument = null;
+
+            // Act
+            Throw.IfNullOrEmpty(argument, nameof(argument));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfNullOrEmpty_EmptyCollection_ThrowsArgumentNullException()
+        {
+            // Arrange
+            var argument = new List<string>();
+
+            // Act
+            Throw.IfNullOrEmpty(argument, nameof(argument));
+        }
+
+        [TestMethod]
+        public void IfNullOrEmpty_NonEmptyCollection_NoExceptionThrown()
+        {
+            // Arrange
+            var argument = new List<string>() { "oneitme" };
+
+            // Act
+            Throw.IfNullOrEmpty(argument, nameof(argument));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfHasNull_CollectionHasNull_ThrowsArgumentException()
+        {
+            // Arrange
+            var argument = new List<string>() { "oneitem", null, "seconditem" };
+
+            // Act
+            Throw.IfHasNull(argument, nameof(argument));
+        }
+
+        [TestMethod]
+        public void IfHasNull_CollectionHasNoNull_NoExceptionThrown()
+        {
+            // Arrange
+            var argument = new List<string>() { "oneitem", "seconditem" };
+
+            // Act
+            Throw.IfHasNull(argument, nameof(argument));
         }
     }
 }
