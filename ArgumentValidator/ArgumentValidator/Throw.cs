@@ -61,7 +61,7 @@
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="argumentName">The argument name.</param>
-        public static void IfHasNull(ICollection argumentValue, string argumentName)
+        public static void IfNullOrHasNull(ICollection argumentValue, string argumentName)
         {
             IfNull(argumentValue, argumentName);
 
