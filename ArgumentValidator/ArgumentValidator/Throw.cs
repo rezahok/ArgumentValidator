@@ -120,9 +120,16 @@
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="startRange">The start range valule.</param>
         /// <param name="endRange">The end range value.</param>
-        public static void IfNotInRange(int argumentValue, int startRange, int endRange)
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfNotInRange(int argumentValue, int startRange, int endRange, string argumentName)
         {
-            IfConstraint(() => argumentValue < startRange || argumentValue > endRange);
+            if(argumentValue < startRange || argumentValue > endRange)
+            {
+                throw new ArgumentOutOfRangeException(
+                    argumentName, 
+                    argumentValue,
+                    $"Should be outside the range {startRange} to {endRange}");
+            }
         }
 
         /// <summary>
@@ -132,9 +139,16 @@
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="startRange">The start range valule.</param>
         /// <param name="endRange">The end range value.</param>
-        public static void IfInRange(int argumentValue, int startRange, int endRange)
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfInRange(int argumentValue, int startRange, int endRange, string argumentName)
         {
-            IfConstraint(() => argumentValue >= startRange && argumentValue <= endRange);
+            if(argumentValue >= startRange && argumentValue <= endRange)
+            {
+                throw new ArgumentOutOfRangeException(
+                    argumentName,
+                    argumentValue,
+                    $"Should be inside the range {startRange} to {endRange}");
+            }
         }
     }
 }
