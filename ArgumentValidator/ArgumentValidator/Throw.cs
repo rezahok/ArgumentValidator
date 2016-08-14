@@ -85,12 +85,14 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfHasNull<T>(ICollection<T> argumentValue, string argumentName)
         {
-            if (argumentValue != null)
+            if (argumentValue == null)
+            {                
+                return;
+            }
+
+            if (argumentValue.Any(item => item == null))
             {
-                if (argumentValue.Any(item => item == null))
-                {
-                    throw new ArgumentException("Cannot contain a null item in the collection", argumentName);
-                }
+                throw new ArgumentException("Cannot contain a null item in the collection", argumentName);
             }
         }
 
@@ -128,7 +130,7 @@
         /// <param name="startRange">The start range valule.</param>
         /// <param name="endRange">The end range value.</param>
         /// <param name="argumentName">The argument name.</param>
-        public static void IfNotInRange(int argumentValue, int startRange, int endRange, string argumentName)
+        public static void IfOutOfRange(int argumentValue, int startRange, int endRange, string argumentName)
         {
             if(argumentValue < startRange || argumentValue > endRange)
             {

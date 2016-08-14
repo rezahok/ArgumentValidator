@@ -258,12 +258,12 @@
         }
 
         /// <summary>
-        /// IfNotInRange throws <exception cref="ArgumentOutOfRangeException"/> when the argument 
+        /// IfOutOfRange throws <exception cref="ArgumentOutOfRangeException"/> when the argument 
         /// is not given inside the range.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfNotInRange_GreaterThanEndRangeValue_ThrowsInvalidConstraintException()
+        public void IfOutOfRange_GreaterThanEndRangeValue_ThrowsInvalidConstraintException()
         {
             // Arrange
             var argument = 500;
@@ -271,16 +271,16 @@
             var endRange = 100;
 
             // Act
-            Throw.IfNotInRange(argument, startRange, endRange, nameof(argument));
+            Throw.IfOutOfRange(argument, startRange, endRange, nameof(argument));
         }
 
         /// <summary>
-        /// IfNotInRange throws <exception cref="ArgumentOutOfRangeException"/> when the argument 
+        /// IfOutOfRange throws <exception cref="ArgumentOutOfRangeException"/> when the argument 
         /// is not given inside the range.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfNotInRange_LessThanStartRangeValue_ThrowsInvalidConstraintException()
+        public void IfOutOfRange_LessThanStartRangeValue_ThrowsInvalidConstraintException()
         {
             // Arrange
             var argument = 0;
@@ -288,14 +288,14 @@
             var endRange = 100;
 
             // Act
-            Throw.IfNotInRange(argument, startRange, endRange, nameof(argument));
+            Throw.IfOutOfRange(argument, startRange, endRange, nameof(argument));
         }
 
         /// <summary>
-        /// IfNotInRange throws no exception when argument is in range.
+        /// IfOutOfRange throws no exception when argument is in range.
         /// </summary>
         [TestMethod]
-        public void IfNotInRange_StartRangeValue_NoExceptionThrown()
+        public void IfOutOfRange_StartRangeValue_NoExceptionThrown()
         {
             // Arrange
             var argument = 1;
@@ -303,14 +303,14 @@
             var endRange = 100;
 
             // Act
-            Throw.IfNotInRange(argument, startRange, endRange, nameof(argument));
+            Throw.IfOutOfRange(argument, startRange, endRange, nameof(argument));
         }
 
         /// <summary>
-        /// IfNotInRange throws no exception when argument is in range.
+        /// IfOutOfRange throws no exception when argument is in range.
         /// </summary>
         [TestMethod]
-        public void IfNotInRange_EndRangeValue_NoExceptionThrown()
+        public void IfOutOfRange_EndRangeValue_NoExceptionThrown()
         {
             // Arrange
             var argument = 100;
@@ -318,14 +318,14 @@
             var endRange = 100;
 
             // Act
-            Throw.IfNotInRange(argument, startRange, endRange, nameof(argument));
+            Throw.IfOutOfRange(argument, startRange, endRange, nameof(argument));
         }
         
         /// <summary>
-        /// IfNotInRange does not throw any exception when argument is inside the given range.
+        /// IfOutOfRange does not throw any exception when argument is inside the given range.
         /// </summary>
         [TestMethod]
-        public void IfNotInRange_InRange_NoExceptionThrown()
+        public void IfOutOfRange_InRange_NoExceptionThrown()
         {
             // Arrange
             var argument = 50;
@@ -333,7 +333,7 @@
             var endRange = 100;
 
             // Acts
-            Throw.IfNotInRange(argument, startRange, endRange, nameof(argument));
+            Throw.IfOutOfRange(argument, startRange, endRange, nameof(argument));
         }
 
         /// <summary>
