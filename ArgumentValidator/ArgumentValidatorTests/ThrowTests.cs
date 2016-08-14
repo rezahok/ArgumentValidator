@@ -14,6 +14,15 @@
     public class ThrowTests
     {
         /// <summary>
+        /// A sample test enum
+        /// </summary>
+        enum TestEnum
+        {
+            Important,
+            NotSoImportant
+        }
+
+        /// <summary>
         /// IfNullOrEmpty throws <exception cref="ArgumentException"/> when the argument is empty.
         /// </summary>
         [TestMethod]
@@ -231,7 +240,7 @@
         }
 
         /// <summary>
-        /// IfNull throws <exception cref="ArgumentNullException"/> when the nullable argument is null.
+        /// IfNull throws <exception cref="ArgumentException"/> when the nullable argument is null.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -263,7 +272,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfOutOfRange_GreaterThanEndRangeValue_ThrowsInvalidConstraintException()
+        public void IfOutOfRange_GreaterThanEndRangeValue_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var argument = 500;
@@ -280,7 +289,22 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfOutOfRange_LessThanStartRangeValue_ThrowsInvalidConstraintException()
+        public void IfOutOfRange_EnumOutOfRangeValue_ThrowsArgumentOutOfRangeException()
+        {
+            // Arrange
+            TestEnum argument = (TestEnum)5;
+
+            // Act
+            Throw.IfOutOfRange(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfOutOfRange throws <exception cref="ArgumentOutOfRangeException"/> when the argument 
+        /// is not given inside the range.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IfOutOfRange_LessThanStartRangeValue_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var argument = 0;
@@ -372,7 +396,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfInRange_StartRangeValue_ThrowsInvalidConstraintException()
+        public void IfInRange_StartRangeValue_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var argument = 1;
@@ -389,7 +413,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfInRange_EndRangeValue_ThrowsInvalidConstraintException()
+        public void IfInRange_EndRangeValue_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var argument = 100;
@@ -406,7 +430,7 @@
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IfInRange_InRange_NoExceptionThrowsInvalidConstraintException()
+        public void IfInRange_InRange_NoExceptionThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var argument = 50;

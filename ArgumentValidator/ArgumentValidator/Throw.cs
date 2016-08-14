@@ -123,8 +123,8 @@
         }
 
         /// <summary>
-        /// Throws <exception cref="ArgumentOutOfRangeException"/> when argument not in range. The range check is
-        /// as follows: argumentValue less than startRange  and greater than startRange. 
+        /// Throws <exception cref="ArgumentOutOfRangeException"/> when argument not within the inclusive range. 
+        /// The range check is argumentValue less than startRange  and greater than startRange. 
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="startRange">The start range valule.</param>
@@ -138,6 +138,24 @@
                     argumentName, 
                     argumentValue,
                     $"Cannot be outside the range {startRange} to {endRange}");
+            }
+        }
+
+        /// <summary>
+        /// Throws <exception cref="ArgumentOutOfRangeException"/> when argument not in range.
+        /// </summary>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfOutOfRange(Enum argumentValue, string argumentName)
+        {
+            var enumType = argumentValue.GetType();
+
+            if (!Enum.IsDefined(enumType, argumentValue))
+            {
+                throw new ArgumentOutOfRangeException(
+                   argumentName,
+                   argumentValue,
+                   $"Cannot be a value outside the specified enum range.");
             }
         }
 
