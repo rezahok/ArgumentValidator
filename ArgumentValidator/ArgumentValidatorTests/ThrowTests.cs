@@ -17,7 +17,8 @@
         /// IfNullOrEmpty throws <exception cref="ArgumentException"/> when the argument is empty.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentException))
+            ]
         public void IfNullOrEmpty_Empty_ThrowsArgumentException()
         {
             // Arrange
@@ -136,7 +137,7 @@
         }
 
         /// <summary>
-        /// IfNullOrHasNull throws <exception cref="ArgumentException"/> when the collection has null.
+        /// IfHasNull throws <exception cref="ArgumentException"/> when the collection has null.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -146,11 +147,11 @@
             var argument = new List<string>() { "oneitem", null, "seconditem" };
 
             // Act
-            Throw.IfNullOrHasNull(argument, nameof(argument));
+            Throw.IfHasNull(argument, nameof(argument));
         }
 
         /// <summary>
-        /// IfNullOrHasNull does not throw any exception when collection does not have a null value.
+        /// IfHasNull does not throw any exception when collection does not have a null value.
         /// </summary>
         [TestMethod]
         public void IfNullOrHasNull_CollectionHasNoNull_NoExceptionThrown()
@@ -159,7 +160,20 @@
             var argument = new List<string> { "oneitem", "seconditem" };
 
             // Act
-            Throw.IfNullOrHasNull(argument, nameof(argument));
+            Throw.IfHasNull(argument, nameof(argument));
+        }
+
+        /// <summary>
+        /// IfHasNull does not throw any exception when collection is null.
+        /// </summary>
+        [TestMethod]
+        public void IfNullOrHasNull_CollectionIsNull_NoExceptionThrown()
+        {
+            // Arrange
+            ICollection<int> argument = null;
+
+            // Act
+            Throw.IfHasNull(argument, nameof(argument));
         }
 
         /// <summary>

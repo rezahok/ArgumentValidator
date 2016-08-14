@@ -12,22 +12,6 @@
     public static class Throw
     {
         /// <summary>
-        /// Throws <exception cref="ArgumentNullException"/> if argument is null, and throws 
-        /// <exception cref="ArgumentException"/> when argument is empty.
-        /// </summary>
-        /// <param name="argumentValue">The argument value.</param>
-        /// <param name="argumentName">The argument name.</param>
-        public static void IfNullOrEmpty(string argumentValue, string argumentName)
-        {
-            IfNull(argumentValue, argumentName);
-
-            if (argumentValue.Length == 0)
-            {
-                throw new ArgumentException("Should not be empty", argumentName);
-            }
-        }
-
-        /// <summary>
         /// Throws <exception cref="ArgumentNullException"/> if argument is null.
         /// </summary>
         /// <typeparam name="T">Type of the argument</typeparam>
@@ -37,7 +21,7 @@
         {
             if (argumentValue == null)
             {
-                throw new ArgumentNullException(argumentName, "Should not be null");
+                throw new ArgumentNullException(argumentName);
             }
         }
 
@@ -47,11 +31,30 @@
         /// <typeparam name="T">Type of the argument</typeparam>
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="argumentName">The argument name.</param>
-        public static void IfNull<T>(T? argumentValue, string argumentName) where T: struct 
+        public static void IfNull<T>(T? argumentValue, string argumentName) where T : struct
         {
             if (!argumentValue.HasValue)
             {
-                throw new ArgumentException("Should have a valid value for type", argumentName);
+                throw new ArgumentException("Cannot be an ivalid value", argumentName);
+            }
+        }
+
+        /// <summary>
+        /// Throws <exception cref="ArgumentNullException"/> if argument is null, and throws 
+        /// <exception cref="ArgumentException"/> when argument is empty.
+        /// </summary>
+        /// <param name="argumentValue">The argument value.</param>
+        /// <param name="argumentName">The argument name.</param>
+        public static void IfNullOrEmpty(string argumentValue, string argumentName)
+        {
+            if (argumentValue == null)
+            {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            if (argumentValue.Length == 0)
+            {
+                throw new ArgumentException("Cannot be an empty string", argumentName);
             }
         }
 
@@ -63,11 +66,14 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfNullOrEmpty(ICollection argumentValue, string argumentName)
         {
-            IfNull(argumentValue, argumentName);
+            if (argumentValue == null)
+            {
+                throw new ArgumentNullException(argumentName);
+            }
 
             if (argumentValue.Count == 0)
             {
-                throw new ArgumentException("Should not be an empty collection", argumentName);
+                throw new ArgumentException("Cannot be an empty collection", argumentName);
             }
         }
 
@@ -77,13 +83,14 @@
         /// </summary>
         /// <param name="argumentValue">The argument value.</param>
         /// <param name="argumentName">The argument name.</param>
-        public static void IfNullOrHasNull<T>(ICollection<T> argumentValue, string argumentName)
+        public static void IfHasNull<T>(ICollection<T> argumentValue, string argumentName)
         {
-            IfNull(argumentValue, argumentName);
-
-            if (argumentValue.Any(item => item == null))
+            if (argumentValue != null)
             {
-                throw new ArgumentException("Should not contain a null item in the collection", argumentName);
+                if (argumentValue.Any(item => item == null))
+                {
+                    throw new ArgumentException("Cannot contain a null item in the collection", argumentName);
+                }
             }
         }
 
@@ -96,7 +103,7 @@
         {
             if (argumentValue == Guid.Empty)
             {
-                throw new ArgumentException("Should not be an empty Guid", argumentName);
+                throw new ArgumentException("Cannot be an empty Guid", argumentName);
             }
         }
 
@@ -128,7 +135,7 @@
                 throw new ArgumentOutOfRangeException(
                     argumentName, 
                     argumentValue,
-                    $"Should be outside the range {startRange} to {endRange}");
+                    $"Cannot be outside the range {startRange} to {endRange}");
             }
         }
 
@@ -147,7 +154,7 @@
                 throw new ArgumentOutOfRangeException(
                     argumentName,
                     argumentValue,
-                    $"Should be inside the range {startRange} to {endRange}");
+                    $"Cannot be inside the range {startRange} to {endRange}");
             }
         }
     }
