@@ -12,12 +12,13 @@
     <description>Example Usage:
 
        Throw.IfNull(argument, nameof(argument));
-
        Throw.IfNullOrEmpty(argument, nameof(argument));
+
     </description>
     <summary>Helper functions to aid in argument validation for C# functions.</summary>
     <releaseNotes>Added Throw.IfNull and Throw.IfNullOrEmpty</releaseNotes>
     <copyright>Copyright (c) 2016 Rezaul Hoque</copyright>
-    <tags>C# ArgumentValidator Guards</tags>
+    <tags>null nullcheck argument validator validation guard guards argumentvalidator
+</tags>
   </metadata>
 </package>
