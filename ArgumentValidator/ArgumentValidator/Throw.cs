@@ -47,10 +47,7 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfNullOrEmpty(string argumentValue, string argumentName)
         {
-            if (argumentValue == null)
-            {
-                throw new ArgumentNullException(argumentName);
-            }
+            Throw.IfNull(argumentValue, argumentName);
 
             if (argumentValue.Length == 0)
             {
@@ -66,10 +63,7 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfNullOrEmpty(ICollection argumentValue, string argumentName)
         {
-            if (argumentValue == null)
-            {
-                throw new ArgumentNullException(argumentName);
-            }
+            Throw.IfNull(argumentValue, argumentName);
 
             if (argumentValue.Count == 0)
             {
