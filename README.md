@@ -1,6 +1,11 @@
+## Synopsis
+
+A set of helper functions to aid in argument validations.
+
 ## Motivation
 
-A set of helper functions to do argument validations.
+The first few lines of any well behaved function should be argument validation. Fail fast, fail early is not only the motto in the startup world, but the same mantra works when writing a well groomed function. Once you set up the expectations and constraints it also narrows down the behaviour matrix that you need to test.  [Read more ...](https://medium.com/@rezaulhoque/proper-function-manners-and-etiquettes-1ea83d4a7562#.hk2muqabm) 
+
 
 ## Usage example
 
