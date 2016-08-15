@@ -1,10 +1,15 @@
-## Synopsis
+## Motivation
 
 A set of helper functions to do argument validations.
 
-## Code Example
+## Usage example
 
-<script src="https://gist.github.com/rezahok/cda5c813272810fa17232cd44eb1c87d.js"></script>
+```C#
+        public void AddPerson(string personId, Person personData)
+        {
+            Throw.IfNullOrEmpty(personId, nameof(personId));
+            Throw.IfNull(personData, nameof(personData));
+```
 
 ## Installation
 
