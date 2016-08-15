@@ -21,17 +21,17 @@ Check for Null or Empty
 Check for condition
 
 ```C#
-       public void Compute(int value)
+       public void Compute(int generation)
         {
-            Throw.IfNot(() => value > 100);
+            Throw.IfNot(() => generation > 100);
 ```
 
 Check for range
 
 ```C#
-        public void Compute(int value)
+        public void Compute(int generation)
         {
-            Throw.IfOutOfRange(value, 1, 100, nameof(value));
+            Throw.IfOutOfRange(generation, 1, 100, nameof(generation));
 ```
 
 
