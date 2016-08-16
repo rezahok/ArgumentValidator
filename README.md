@@ -41,3 +41,6 @@ First, [install NuGet](http://docs.nuget.org/consume/installing-nuget). Then, in
 
 ```Install-Package Argument.Validator```
 
+## Acknowledgments
+
+A big thanks to [Olivia Ifrim](https://github.com/olivif) who helped craft the API requirements.
