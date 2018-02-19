@@ -35,7 +35,7 @@
         {
             if (!argumentValue.HasValue)
             {
-                throw new ArgumentException("Cannot be an ivalid value", argumentName);
+                throw new ArgumentException("Cannot be an invalid value", argumentName);
             }
         }
 
