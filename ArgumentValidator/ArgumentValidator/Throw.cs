@@ -80,7 +80,7 @@
         public static void IfHasNull<T>(ICollection<T> argumentValue, string argumentName)
         {
             if (argumentValue == null)
-            {                
+            {
                 return;
             }
 
@@ -126,10 +126,10 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfOutOfRange(int argumentValue, int startRange, int endRange, string argumentName)
         {
-            if(argumentValue < startRange || argumentValue > endRange)
+            if (argumentValue < startRange || argumentValue > endRange)
             {
                 throw new ArgumentOutOfRangeException(
-                    argumentName, 
+                    argumentName,
                     argumentValue,
                     $"Cannot be outside the range {startRange} to {endRange}");
             }
@@ -163,7 +163,7 @@
         /// <param name="argumentName">The argument name.</param>
         public static void IfInRange(int argumentValue, int startRange, int endRange, string argumentName)
         {
-            if(argumentValue >= startRange && argumentValue <= endRange)
+            if (argumentValue >= startRange && argumentValue <= endRange)
             {
                 throw new ArgumentOutOfRangeException(
                     argumentName,
